@@ -17,14 +17,6 @@ namespace tests
             Assert.Equal(3, generated.Count());
         }
 
-        [Fact]
-        public void CountShouldControlNumberOfResultsFail()
-        {
-            var range = new Range { Count = 3 };
-
-            var generated = range.Of(() => "");
-
-            Assert.Equal(4, generated.Count());
-        }
+       
     }
 }
