@@ -1,0 +1,11 @@
+**/bin/
+**/obj/
+**/.git/
+**/.vs/
+infra/
+docker_backup
+**/Dockerfile*
+**/.dockerignore*
+**/.gitignore
+**/docker-compose*.yml
+**/*.user
