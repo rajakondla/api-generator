@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+  generator:
+    image: my-registry:55000/gen:ci-8
+    ports: 
+      - "8027:80"
+    networks:
+      - my-network
+  mail:
+    image: mailhog/mailhog
+    ports: 
+      - "8025:8025"
+    networks:
+      - my-network
+  integration:
+    image: my-registry:55000/gen:integration-9
+    build: .
+    networks:
+      - my-network
+networks:
+  my-network:
+    external: true

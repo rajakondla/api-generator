@@ -10,7 +10,7 @@ COPY . .
 Run dotnet publish -o /publish
 
 # runtime stage
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
 WORKDIR /publish
 COPY --from=build-env /publish .
 ENTRYPOINT ["dotnet","/publish/api.dll"]

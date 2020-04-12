@@ -16,6 +16,9 @@ COPY . .
 ENV TEAMCITY_PROJECT_NAME=fake
 RUN dotnet test tests/tests.csproj
 
+#integration test
+#RUN dotnet test integrations/integrations.csproj
+
 #publish
 RUN dotnet publish api/api.csproj -o /publish
 

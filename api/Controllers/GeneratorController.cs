@@ -52,15 +52,16 @@ namespace api.Controllers
             => range.Of(Internet.DomainName);
 
         [HttpPost]
-        public async Task<string> EmaiRandomNames(Range range, string email = "test@fake.com")
+        public async Task<string> EmailRandomNames(string email = "test@fake.com")
         {
             try
             {
                 var message = new MimeMessage();
                 message.From.Add(new MailboxAddress("Generator", "generator@generate.com"));
-                message.To.Add(new MailboxAddress("", email));
+                message.To.Add(new MailboxAddress("test", email));
                 message.Subject = "Here are your random names!";
 
+                Console.WriteLine("call from docker");
                 message.Body = new TextPart("plain")
                 {
                     Text = "Hi, this is Raja!" // string.Join(Environment.NewLine, range.Of(Name.FullName))
@@ -68,14 +69,14 @@ namespace api.Controllers
 
                 using (var mailClient = new SmtpClient())
                 {
-                    await mailClient.ConnectAsync("mail", 1025,SecureSocketOptions.None);
-//                    await mailClient.AuthenticateAsync("raja.kondla@xinthe.com","Vicky@201904");
+                     await mailClient.ConnectAsync("mail", 1025, SecureSocketOptions.None);
+                    //                    await mailClient.AuthenticateAsync("raja.kondla@xinthe.com","Vicky@201904");
                     await mailClient.SendAsync(message);
                     await mailClient.DisconnectAsync(true);
                     return "Success";
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return e.Message;
             }
